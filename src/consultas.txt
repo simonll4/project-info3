@@ -1,0 +1,3 @@
+* excepciones a la hora de imprimir arbol vacio
+* esta bien hacer los arboles staticos?
+* como hacemos las salidas de los ingresos de valores ()

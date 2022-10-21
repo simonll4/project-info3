@@ -70,13 +70,18 @@ public class BinaryNode<AnyType> {
         return root; // return resulting tree
     }
 
-    public void add(BinaryNode<AnyType> newRoot, Integer element) {
-        if (element < newRoot.getElement()) {
-            if (newRoot.getLeft() != null) add(newRoot.getLeft(), element);
-            else newRoot.setLeft(new BinaryNode<>(element));
+    public void add(BinaryNode<AnyType> node, Integer element) {
+
+        if (getElement() == null) {    //chequeo si el arbol esta vacio
+            setElement(element);
         } else {
-            if (newRoot.getRight() != null) add(newRoot.getRight(), element);
-            else newRoot.setRigth(new BinaryNode<>(element));
+            if (element < node.getElement()) {
+                if (node.getLeft() != null) add(node.getLeft(), element);
+                else node.setLeft(new BinaryNode<>(element));
+            } else {
+                if (node.getRight() != null) add(node.getRight(), element);
+                else node.setRigth(new BinaryNode<>(element));
+            }
         }
     }
 

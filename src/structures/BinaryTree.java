@@ -1,4 +1,5 @@
 package structures;
+
 public class BinaryTree<AnyType> {
 
     private BinaryNode<AnyType> root;
@@ -12,79 +13,19 @@ public class BinaryTree<AnyType> {
     }
 
     public void add(Integer element) {
-
-
-        if (root.getElement() == null) {    //chequeo si el arbol esta vacio
-            root.setElement(element);
-        } else {
-            //Si el valor a insertar es menor al valor del nodo se insertará a la izquierda.
-            //Si el valor a insertar es mayor al valor del nodo se insertará a la derecha.
-            if (element < root.getElement()) {
-                if (root.getLeft() != null) root.add(root.getLeft(), element);
-                else root.setLeft(new BinaryNode<>(element));
-            } else {
-                if (root.getRight() != null) root.add(root.getRight(), element);
-                else root.setRigth(new BinaryNode<>(element));
-            }
-        }
+        root.add(root, element);
     }
 
     public void addNotRep(Integer element) throws Exception {
-
-        if (element < root.getElement()) {
-            if (root.getLeft() == null) {
-                root.setLeft(new BinaryNode<>(element));
-            } else {
-                root.addNotRep(element, root.getLeft());
-            }
-        } else if (element > root.getElement()) {
-            if (root.getRight() == null) {
-                root.setRigth(new BinaryNode<>(element));
-            } else {
-                root.addNotRep(element, root.getRight());
-            }
-        } else {
-            throw new Exception("El elemento ya esta en el arbol");
-        }
-
+        root.addNotRep(element, root);
     }
 
     public void delete(Integer element) throws Exception {
-        if (element.equals(root.getElement())) {
-            if (root.getLeft() == null && root.getRight() == null) root = null;
-            else if (root.getRight() == null) root = root.getLeft();
-            else if (root.getLeft() == null) root = root.getRight();
-            else {
-                BinaryNode<AnyType> aux = root.getLeft();
-                root = root.getRight();
-                BinaryNode<AnyType> aux2 = root.getLeft();
-                if (aux2 != null) {
-                    while (aux2.getLeft() != null) {
-                        aux2 = aux2.getLeft();
-                    }
-                    aux2.setLeft(aux);
-                } else root.setLeft(aux);
-            }
-
-        } else if (element < root.getElement() && root.getLeft() != null)
-            root.setLeft(root.delete(element, root.getLeft()));
-        else if (element > root.getElement() && root.getRight() != null)
-            root.setRigth(root.delete(element, root.getRight()));
-        else throw new Exception("El elemento no esta en el arbol");
+        root.delete(element, root);
     }
 
     public Integer find(Integer element) {
-
-        if (element.equals(root.getElement())) {
-            return root.getElement();
-        } else if (element < root.getElement()) {
-            if (root.getLeft() != null) return root.find(root.getLeft(), element);
-            else return null;
-        } else {
-            if (root.getRight() != null) return root.find(root.getRight(), element);
-            else return null;
-        }
-
+        return root.find(root, element);
     }
 
     public BinaryNode<AnyType> getRoot() {
@@ -103,9 +44,7 @@ public class BinaryTree<AnyType> {
         if (root != null) root.printPreOrder();
     }
 
-    public void printInOrder() {
-        if (root != null) root.printInOrder();
-    }
+    public void printInOrder() {if (root != null) root.printInOrder();}
 
     public void printPostOrder() {
         if (root != null) root.printPostOrder();
