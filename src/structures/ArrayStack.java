@@ -1,4 +1,4 @@
-package Utils;
+package structures;
 import java.util.Stack;
 
 public class ArrayStack<AnyType> {

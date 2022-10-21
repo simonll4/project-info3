@@ -1,4 +1,4 @@
-package Utils;
+package structures;
 
 public class BinaryNode<AnyType> {
 
