@@ -28,8 +28,10 @@ public class Menu {
                     Options.manualBinaryTree();
                     break;
                 case 3:
+                    Options.randomAvlTree();
                     break;
                 case 4:
+                    Options.manualAvlTree();
                     break;
                 case 5:
                     Options.showTree();
