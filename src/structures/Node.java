@@ -4,9 +4,7 @@ package structures;
 public class Node<T extends Comparable<T>> {
 
     private T data;
-
     private int height;
-
     private Node<T> leftChild;
     private Node<T> rightChild;
 
@@ -48,6 +46,8 @@ public class Node<T extends Comparable<T>> {
     public int getHeight() {
         return height;
     }
+
+
 }
 
 

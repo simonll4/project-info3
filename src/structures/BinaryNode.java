@@ -158,5 +158,12 @@ public class BinaryNode<AnyType> {
         if (rigth != null) rigth.printInOrder();
     }
 
+    public void printDraw(String prefix, BinaryNode n, boolean isLeft) {
+        if (n != null) {
+            printDraw(prefix + "     ", n.getRight(), false);
+            System.out.println(prefix + ("|-- ") + n.getElement());
+            printDraw(prefix + "     ", n.getLeft(), true);
+        }
+    }
 
 }

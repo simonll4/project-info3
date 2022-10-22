@@ -1,5 +1,7 @@
 package structures;
 
+import java.util.Scanner;
+
 public class BinaryTree<AnyType> {
 
     private BinaryNode<AnyType> root;
@@ -44,10 +46,16 @@ public class BinaryTree<AnyType> {
         if (root != null) root.printPreOrder();
     }
 
-    public void printInOrder() {if (root != null) root.printInOrder();}
+    public void printInOrder() {
+        if (root != null) root.printInOrder();
+    }
 
     public void printPostOrder() {
         if (root != null) root.printPostOrder();
+    }
+
+    public void printDraw() {
+        root.printDraw("", root, false);
     }
 
     public void makeEmpty() {

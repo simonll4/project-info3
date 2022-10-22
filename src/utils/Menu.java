@@ -2,6 +2,10 @@ package utils;
 
 import java.util.Scanner;
 
+/*
+    menu con las opciones que cuenta el programa
+ */
+
 public class Menu {
 
     public static void startMenu() {
@@ -12,7 +16,7 @@ public class Menu {
             System.out.println("************************\nElige opción:\n1.- Crear arbol aleatorio" +
                     "\n2.- Crear arbol manual\n" +
                     "3.- Crear arbol AVL aleatorio\n" +
-                    "4.- Crear arbol AVL aleatorio\n" +
+                    "4.- Crear arbol AVL manual\n" +
                     "5.- Mostrar arbol ordenado\n" +
                     "6.- Mostrar dibujo de arbol\n" +
                     "0.- Salir\n************************");
@@ -34,9 +38,10 @@ public class Menu {
                     Options.manualAvlTree();
                     break;
                 case 5:
-                    Options.showTree();
+                    Options.printInOrder();
                     break;
                 case 6:
+                    Options.printDrawTree();
                     break;
                 default:
                     System.out.println("OPCION INCORRECTA");

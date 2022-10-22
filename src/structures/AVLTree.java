@@ -1,9 +1,13 @@
 package structures;
 
-public class AVLTree<T extends Comparable<T>>{
+
+public class AVLTree<T extends Comparable<T>> {
 
     private Node<T> root;
 
+    public Node<T> getRoot() {
+        return root;
+    }
 
     public AVLTree<T> insert(T data) {
         root = insert(data, root);
@@ -66,6 +70,17 @@ public class AVLTree<T extends Comparable<T>>{
         }
     }
 
+    public void printDraw() {
+        printDraw("", root, false);
+    }
+
+    private void printDraw(String prefix, Node n, boolean isLeft) {
+        if (n != null) {
+            printDraw(prefix + "     ", n.getRightChild(), false);
+            System.out.println(prefix + ("|-- ") + n.getData());
+            printDraw(prefix + "     ", n.getLeftChild(), true);
+        }
+    }
 
     public T getMax() {
         if (isEmpty()) {
@@ -154,14 +169,20 @@ public class AVLTree<T extends Comparable<T>>{
         return node != null ? node.getHeight() : 0;
     }
 
-    /*
-    public Integer find(Integer element) {
+    public T find(T element) {
         return find(root, element);
     }
 
-    public Integer find(Node<T> node, Integer element) {
-        return 0;
-    }*/
-
+    private T find(Node<T> node, T element) {
+        if (element.equals(node.getData())) {
+            return  node.getData();
+        } else if (element.compareTo(node.getData()) < 0) {
+            if (node.getLeftChild() != null) return find(node.getLeftChild(), element);
+            else return null;
+        } else {
+            if (node.getRightChild() != null) return find(node.getRightChild(), element);
+            else return null;
+        }
+    }
 
 }
