@@ -3,9 +3,9 @@ package structures;
 
 public class AVLTree<T extends Comparable<T>> {
 
-    private Node<T> root;
+    private AVLNode<T> root;
 
-    public Node<T> getRoot() {
+    public AVLNode<T> getRoot() {
         return root;
     }
 
@@ -14,9 +14,9 @@ public class AVLTree<T extends Comparable<T>> {
         return this;
     }
 
-    private Node<T> insert(T data, Node<T> node) {
+    private AVLNode<T> insert(T data, AVLNode<T> node) {
         if (node == null) {
-            return new Node<>(data);
+            return new AVLNode<>(data);
         }
         if (data.compareTo(node.getData()) < 0) {
             node.setLeftChild(insert(data, node.getLeftChild()));
@@ -34,7 +34,7 @@ public class AVLTree<T extends Comparable<T>> {
         root = delete(data, root);
     }
 
-    private Node<T> delete(T data, Node<T> node) {
+    private AVLNode<T> delete(T data, AVLNode<T> node) {
         if (node == null) {
             return null;
         }
@@ -62,10 +62,10 @@ public class AVLTree<T extends Comparable<T>> {
         PrintInOrder(root);
     }
 
-    private void PrintInOrder(Node<T> node) {
+    private void PrintInOrder(AVLNode<T> node) {
         if (node != null) {
             PrintInOrder(node.getLeftChild());
-            System.out.println(node.getData());
+            System.out.print(node.getData() + "\t");
             PrintInOrder(node.getRightChild());
         }
     }
@@ -74,7 +74,7 @@ public class AVLTree<T extends Comparable<T>> {
         printDraw("", root, false);
     }
 
-    private void printDraw(String prefix, Node n, boolean isLeft) {
+    private void printDraw(String prefix, AVLNode n, boolean isLeft) {
         if (n != null) {
             printDraw(prefix + "     ", n.getRightChild(), false);
             System.out.println(prefix + ("|-- ") + n.getData());
@@ -89,7 +89,7 @@ public class AVLTree<T extends Comparable<T>> {
         return getMax(root);
     }
 
-    private T getMax(Node<T> node) {
+    private T getMax(AVLNode<T> node) {
         if (node.getRightChild() != null) {
             return getMax(node.getRightChild());
         }
@@ -104,7 +104,7 @@ public class AVLTree<T extends Comparable<T>> {
         return getMin(root);
     }
 
-    private T getMin(Node<T> node) {
+    private T getMin(AVLNode<T> node) {
         if (node.getLeftChild() != null) {
             return getMin(node.getLeftChild());
         }
@@ -116,7 +116,7 @@ public class AVLTree<T extends Comparable<T>> {
         return root == null;
     }
 
-    private Node<T> applyRotation(Node<T> node) {
+    private AVLNode<T> applyRotation(AVLNode<T> node) {
         int balance = balance(node);
         if (balance > 1) {
             if (balance(node.getLeftChild()) < 0) {
@@ -133,9 +133,9 @@ public class AVLTree<T extends Comparable<T>> {
         return node;
     }
 
-    private Node<T> rotateRight(Node<T> node) {
-        Node<T> leftNode = node.getLeftChild();
-        Node<T> centerNode = leftNode.getRightChild();
+    private AVLNode<T> rotateRight(AVLNode<T> node) {
+        AVLNode<T> leftNode = node.getLeftChild();
+        AVLNode<T> centerNode = leftNode.getRightChild();
         leftNode.setRightChild(node);
         node.setLeftChild(centerNode);
         updateHeight(node);
@@ -143,9 +143,9 @@ public class AVLTree<T extends Comparable<T>> {
         return leftNode;
     }
 
-    private Node<T> rotateLeft(Node<T> node) {
-        Node<T> rightNode = node.getRightChild();
-        Node<T> centerNode = rightNode.getLeftChild();
+    private AVLNode<T> rotateLeft(AVLNode<T> node) {
+        AVLNode<T> rightNode = node.getRightChild();
+        AVLNode<T> centerNode = rightNode.getLeftChild();
         rightNode.setLeftChild(node);
         node.setRightChild(centerNode);
         updateHeight(node);
@@ -153,7 +153,7 @@ public class AVLTree<T extends Comparable<T>> {
         return rightNode;
     }
 
-    private void updateHeight(Node<T> node) {
+    private void updateHeight(AVLNode<T> node) {
         int maxHeight = Math.max(
                 height(node.getLeftChild()),
                 height(node.getRightChild())
@@ -161,11 +161,11 @@ public class AVLTree<T extends Comparable<T>> {
         node.setHeight(maxHeight + 1);
     }
 
-    private int balance(Node<T> node) {
+    private int balance(AVLNode<T> node) {
         return node != null ? height(node.getLeftChild()) - height(node.getRightChild()) : 0;
     }
 
-    private int height(Node<T> node) {
+    private int height(AVLNode<T> node) {
         return node != null ? node.getHeight() : 0;
     }
 
@@ -173,7 +173,7 @@ public class AVLTree<T extends Comparable<T>> {
         return find(root, element);
     }
 
-    private T find(Node<T> node, T element) {
+    private T find(AVLNode<T> node, T element) {
         if (element.equals(node.getData())) {
             return  node.getData();
         } else if (element.compareTo(node.getData()) < 0) {

@@ -1,14 +1,14 @@
 package structures;
 
 
-public class Node<T extends Comparable<T>> {
+public class AVLNode<T extends Comparable<T>> {
 
     private T data;
     private int height;
-    private Node<T> leftChild;
-    private Node<T> rightChild;
+    private AVLNode<T> leftChild;
+    private AVLNode<T> rightChild;
 
-    public Node(T data) {
+    public AVLNode(T data) {
         this.data = data;
         this.height = 1;
         this.leftChild = null;
@@ -23,19 +23,19 @@ public class Node<T extends Comparable<T>> {
         return data;
     }
 
-    public void setLeftChild(Node<T> leftChild) {
+    public void setLeftChild(AVLNode<T> leftChild) {
         this.leftChild = leftChild;
     }
 
-    public void setRightChild(Node<T> rightChild) {
+    public void setRightChild(AVLNode<T> rightChild) {
         this.rightChild = rightChild;
     }
 
-    public Node<T> getLeftChild() {
+    public AVLNode<T> getLeftChild() {
         return this.leftChild;
     }
 
-    public Node<T> getRightChild() {
+    public AVLNode<T> getRightChild() {
         return this.rightChild;
     }
 
