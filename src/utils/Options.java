@@ -4,15 +4,19 @@ import structures.*;
 
 import java.util.Scanner;
 
+/*
+    clase utilizada para ejecutar las opciones selecionadas
+    en Menu.java
+ */
+
 public class Options {
-    static final int COUNT = 10;
     static BinaryTree<Integer> randomBinaryTree = new BinaryTree<>();
     static BinaryTree<Integer> manualBinaryTree = new BinaryTree<>();
     static AVLTree<Integer> randomAvlTree = new AVLTree<>();
     static AVLTree<Integer> manualAvlTree = new AVLTree<>();
 
+    //crea un arbol binario con numeros aleatorios
     public static void randomBinaryTree() {
-
         Scanner in = new Scanner(System.in);
         int quantity;
 
@@ -24,6 +28,7 @@ public class Options {
         }
     }
 
+    //crea un arbol binario con numeros ingresados por consola
     public static void manualBinaryTree() {
         Scanner in = new Scanner(System.in);
         int value;
@@ -42,49 +47,7 @@ public class Options {
 
     }
 
-    public static void showTree() {
-        Scanner in = new Scanner(System.in);
-        int option;
-
-        System.out.println("---PRINTER---\n1)ARBOL BINARIO ALEATORIO\n2)ARBOL BINARIO MANUAL\n3)ARBOL AVL ALEATORIO\n4)ARBOL AVL MANUAL");
-        option = in.nextInt();
-
-        if (option == 1) {
-            randomBinaryTree.printInOrder();
-            print();
-        } else if (option == 2) {
-            manualBinaryTree.printInOrder();
-        } else if (option == 3) {
-            randomBinaryTree.printInOrder();
-        } else if (option == 4) {
-            manualBinaryTree.printInOrder();
-        } else {
-            System.out.println("OPCION INCORRECTA");
-        }
-
-    }
-
-    private static Integer generateRandom() {
-        int min = 50;
-        int max = 100;
-
-        //Generate random int value from 50 to 100
-        int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
-        return random_int;
-    }
-
-    private static void print() {
-        print("", manualBinaryTree.getRoot(), false);
-    }
-
-    private static void print(String prefix, BinaryNode n, boolean isLeft) {
-        if (n != null) {
-            System.out.println (prefix + (isLeft ? "|-- " : "\\-- ") + n.getElement());
-            print(prefix + (isLeft ? "|   " : "    "), n.getLeft(), true);
-            print(prefix + (isLeft ? "|   " : "    "), n.getRight(), false);
-        }
-    }
-
+    //crea un arbol binario AVL con numeros aleatorios
     public static void randomAvlTree() {
 
         Scanner in = new Scanner(System.in);
@@ -98,6 +61,7 @@ public class Options {
         }
     }
 
+    //crea un arbol binario AVL con numeros ingresados por consola
     public static void manualAvlTree() {
         Scanner in = new Scanner(System.in);
         int value;
@@ -114,6 +78,95 @@ public class Options {
 
         } while (value > 0);
 
+    }
+
+    //metodo para ejecutar el printInOrder para cada arbol ya creado
+    public static void printInOrder(){
+        Scanner in = new Scanner(System.in);
+        int option;
+
+
+        do{
+            System.out.println("\n---PRINTER---\n0)SALIR\n1)ARBOL BINARIO ALEATORIO\n2)ARBOL BINARIO MANUAL\n3)ARBOL AVL ALEATORIO\n4)ARBOL AVL MANUAL");
+            option = in.nextInt();
+            if (option == 1) {
+                if(randomBinaryTree.height() == 0){
+                    System.out.print("NO HAY UN ARBOL BINARIO ALEATORIO CREADO");
+                } else {
+                    randomBinaryTree.printInOrder();
+                }
+            } else if (option == 2) {
+                if(manualBinaryTree.height() == 0){
+                    System.out.print("NO HAY UN ARBOL BINARIO MANUAL CREADO");
+                } else {
+                    manualBinaryTree.printInOrder();
+                }
+            } else if (option == 3) {
+                if(randomAvlTree.isEmpty()){
+                    System.out.print("NO HAY UN ARBOL AVL RANDOM CREADO");
+                } else {
+                    randomAvlTree.printInOrder();
+                }
+            } else if (option == 4) {
+                if(manualAvlTree.isEmpty()){
+                    System.out.print("NO HAY UN ARBOL AVL MANUAL CREADO");
+                } else {
+                    manualAvlTree.printInOrder();
+                }
+            } else if(option == 0){
+                break;
+            } else {
+                System.out.println("OPCION INCORRECTA");
+            }
+        }while(option != 0);
+
+
+    }
+
+    //metodo para dibujar los arboles ya creados en consola
+    public static void printDrawTree() {
+        Scanner in = new Scanner(System.in);
+        int option;
+
+        do{
+            System.out.println("\n---PRINTER---\n0)SALIR\n1)ARBOL BINARIO ALEATORIO\n2)ARBOL BINARIO MANUAL\n3)ARBOL AVL ALEATORIO\n4)ARBOL AVL MANUAL");
+            option = in.nextInt();
+            if (option == 1) {
+                if(randomBinaryTree.height() == 0){
+                    System.out.print("NO HAY UN ARBOL BINARIO ALEATORIO CREADO");
+                } else {
+                    randomBinaryTree.printDraw();
+                }
+            } else if (option == 2) {
+                if(manualBinaryTree.height() == 0){
+                    System.out.print("NO HAY UN ARBOL BINARIO MANUAL CREADO");
+                } else {
+                    manualBinaryTree.printDraw();
+                }
+            } else if (option == 3) {
+                if(randomAvlTree.isEmpty()){
+                    System.out.print("NO HAY UN ARBOL AVL RANDOM CREADO");
+                } else {
+                    randomAvlTree.printDraw();
+                }
+            } else if (option == 4) {
+                manualAvlTree.printDraw();
+            } else if(option == 0){
+                break;
+            } else {
+                System.out.println("OPCION INCORRECTA");
+            }
+        }while(option !=0 );
+
+
+    }
+
+    //genera numeros aleatorios en un intervalo definido
+    private static Integer generateRandom() {
+        int min = 1;
+        int max = 100;
+
+        return (int) Math.floor(Math.random() * (max - min + 1) + min);
     }
 
 }
