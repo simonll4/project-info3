@@ -1,6 +1,6 @@
 package structures;
 
-import java.util.Scanner;
+import java.lang.Exception;
 
 public class BinaryTree<AnyType> {
 
@@ -122,15 +122,17 @@ public class BinaryTree<AnyType> {
         if (root != null) printPreOrder();
     }
 
-    public void printInOrder() {
-        if (root != null) root.printInOrder();
+    public void printInOrder() throws Exception{
+        if(root.getElement() == null) throw new Exception("ARBOL VACIO");
+        root.printInOrder();
     }
 
     public void printPostOrder() {
         if (root != null) root.printPostOrder();
     }
 
-    public void printDraw() {
+    public void printDraw() throws Exception{
+        if(root.getElement() == null) throw new Exception("ARBOL VACIO");
         root.printDraw("", root, false);
     }
 

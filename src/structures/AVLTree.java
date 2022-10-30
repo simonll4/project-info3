@@ -58,7 +58,8 @@ public class AVLTree<T extends Comparable<T>> {
     }
 
 
-    public void printInOrder() {
+    public void printInOrder() throws Exception{
+        if(root.getData() == null) throw new Exception("ARBOL VACIO");
         PrintInOrder(root);
     }
 
@@ -70,7 +71,8 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
-    public void printDraw() {
+    public void printDraw() throws Exception{
+        if(root.getData() == null) throw new Exception("ARBOL VACIO");
         printDraw("", root, false);
     }
 
