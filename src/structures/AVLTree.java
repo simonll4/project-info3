@@ -1,6 +1,9 @@
 package structures;
 
 
+import exceptions.PrintDrawEx;
+import exceptions.PrintInOrderEx;
+
 public class AVLTree<T extends Comparable<T>> {
 
     private AVLNode<T> root;
@@ -58,8 +61,8 @@ public class AVLTree<T extends Comparable<T>> {
     }
 
 
-    public void printInOrder() throws Exception{
-        if(root.getData() == null) throw new Exception("ARBOL VACIO");
+    public void printInOrder() throws PrintInOrderEx {
+        if (root == null) throw new PrintInOrderEx("ARBOL VACIO");
         PrintInOrder(root);
     }
 
@@ -71,8 +74,8 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
-    public void printDraw() throws Exception{
-        if(root.getData() == null) throw new Exception("ARBOL VACIO");
+    public void printDraw() throws PrintDrawEx {
+        if (root == null) throw new PrintDrawEx("ARBOL VACIO");
         printDraw("", root, false);
     }
 
@@ -177,7 +180,7 @@ public class AVLTree<T extends Comparable<T>> {
 
     private T find(AVLNode<T> node, T element) {
         if (element.equals(node.getData())) {
-            return  node.getData();
+            return node.getData();
         } else if (element.compareTo(node.getData()) < 0) {
             if (node.getLeftChild() != null) return find(node.getLeftChild(), element);
             else return null;

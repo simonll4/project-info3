@@ -1,5 +1,7 @@
 package utils;
 
+import exceptions.PrintDrawEx;
+import exceptions.PrintInOrderEx;
 import structures.*;
 
 import java.util.Scanner;
@@ -88,7 +90,7 @@ public class Options {
     }
 
     //metodo para ejecutar el printInOrder para cada arbol ya creado
-    public static void printInOrder() throws Exception {
+    public static void printInOrder() throws PrintInOrderEx {
         Scanner in = new Scanner(System.in);
         int option;
 
@@ -125,7 +127,7 @@ public class Options {
     }
 
     //metodo para dibujar los arboles ya creados en consola
-    public static void printDrawTree() throws Exception {
+    public static void printDrawTree() throws PrintDrawEx {
         Scanner in = new Scanner(System.in);
         int option;
 

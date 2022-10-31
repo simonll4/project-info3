@@ -1,5 +1,8 @@
 package structures;
 
+import exceptions.PrintDrawEx;
+import exceptions.PrintInOrderEx;
+
 import java.lang.Exception;
 
 public class BinaryTree<AnyType> {
@@ -122,8 +125,8 @@ public class BinaryTree<AnyType> {
         if (root != null) printPreOrder();
     }
 
-    public void printInOrder() throws Exception{
-        if(root.getElement() == null) throw new Exception("ARBOL VACIO");
+    public void printInOrder() throws PrintInOrderEx {
+        if (root.getElement() == null) throw new PrintInOrderEx("ARBOL VACIO");
         root.printInOrder();
     }
 
@@ -131,8 +134,8 @@ public class BinaryTree<AnyType> {
         if (root != null) root.printPostOrder();
     }
 
-    public void printDraw() throws Exception{
-        if(root.getElement() == null) throw new Exception("ARBOL VACIO");
+    public void printDraw() throws PrintDrawEx {
+        if (root.getElement() == null) throw new PrintDrawEx("ARBOL VACIO");
         root.printDraw("", root, false);
     }
 
