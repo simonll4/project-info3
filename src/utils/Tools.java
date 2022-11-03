@@ -5,6 +5,9 @@ import exceptions.PrintInOrderEx;
 
 public class Tools {
 
+    /*
+        metodo llamado para el tratamiento de la excepcion a la hora de imprimir cualquier arbol
+    */
     public static void solvePrint() {
         try {
             if (Options.flagOrder) Options.printInOrder();

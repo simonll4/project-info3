@@ -28,23 +28,23 @@ public class Menu {
                     break;
                 case 1:
                     Options.randomBinaryTree();
-                    Tools.solvePrint();
-                    option = Options.aux;
+                    Tools.solvePrint();  //se ejecuta si se produce excepcion en la impresion
+                    Options.aux = option;
                     break;
                 case 2:
                     Options.manualBinaryTree();
-                    Tools.solvePrint();
-                    option = Options.aux;
+                    Tools.solvePrint(); //se ejecuta si se produce excepcion en la impresion
+                    Options.aux = option;
                     break;
                 case 3:
                     Options.randomAvlTree();
-                    Tools.solvePrint();
-                    option = Options.aux;
+                    Tools.solvePrint(); //se ejecuta si se produce excepcion en la impresion
+                    Options.aux = option;
                     break;
                 case 4:
                     Options.manualAvlTree();
-                    Tools.solvePrint();
-                    option = Options.aux;
+                    Tools.solvePrint(); //se ejecuta si se produce excepcion en la impresion
+                    Options.aux = option;
                     break;
                 case 5:
                     //tratamiento de Excepcion: imprimir en orden arbol vacio
