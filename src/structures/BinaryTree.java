@@ -125,19 +125,28 @@ public class BinaryTree<AnyType> {
         if (root != null) printPreOrder();
     }
 
+    public void printInOrder() {
+        root.printInOrder();
+    }
+    /*
     public void printInOrder() throws PrintInOrderEx {
         if (root.getElement() == null) throw new PrintInOrderEx("ARBOL VACIO");
         root.printInOrder();
     }
+     */
 
     public void printPostOrder() {
         if (root != null) root.printPostOrder();
     }
 
-    public void printDraw() throws PrintDrawEx {
-        if (root.getElement() == null) throw new PrintDrawEx("ARBOL VACIO");
+    public void printDraw() {
         root.printDraw("", root, false);
     }
+
+    /*public void printDraw() throws PrintDrawEx {
+        if (root.getElement() == null) throw new PrintDrawEx("ARBOL VACIO");
+        root.printDraw("", root, false);
+    }*/
 
     public void makeEmpty() {
         root = null;

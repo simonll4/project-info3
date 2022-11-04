@@ -61,10 +61,14 @@ public class AVLTree<T extends Comparable<T>> {
     }
 
 
-    public void printInOrder() throws PrintInOrderEx {
-        if (root == null) throw new PrintInOrderEx("ARBOL VACIO");
+    public void printInOrder()  {
         PrintInOrder(root);
     }
+
+    /*public void printInOrder() throws PrintInOrderEx {
+        if (root == null) throw new PrintInOrderEx("ARBOL VACIO");
+        PrintInOrder(root);
+    }*/
 
     private void PrintInOrder(AVLNode<T> node) {
         if (node != null) {
@@ -74,10 +78,14 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
-    public void printDraw() throws PrintDrawEx {
-        if (root == null) throw new PrintDrawEx("ARBOL VACIO");
+    public void printDraw(){
         printDraw("", root, false);
     }
+
+    /*public void printDraw() throws PrintDrawEx {
+        if (root == null) throw new PrintDrawEx("ARBOL VACIO");
+        printDraw("", root, false);
+    }*/
 
     private void printDraw(String prefix, AVLNode n, boolean isLeft) {
         if (n != null) {
