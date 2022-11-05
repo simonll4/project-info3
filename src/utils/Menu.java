@@ -14,8 +14,10 @@ public class Menu {
         int option;
 
         do {
-            System.out.println("************************\nSeleccione el tipo de TDA:\n1.- Arbol binario" + "\n2.- Arbol AVL\n" + "3.- Monticulo binario\n" + "0.- Salir\n************************");
+            Operations.exit = false;
+            System.out.println("\n*************************\nSeleccione el tipo de TDA:\n1.- Arbol binario" + "\n2.- Arbol AVL\n" + "3.- Monticulo binario\n" + "0.- Salir\n************************");
             option = in.nextInt();
+
             switch (option) {
                 case 0:
                     break;
@@ -43,10 +45,16 @@ public class Menu {
         int option;
 
         do {
-
             if (!Operations.exit) {
-                System.out.println("************************\nSeleccione operacion:\n0.-Inicio" + "\n1.- Crear arbol manual"
-                        + "\n2.- Crear aleatoriamente\n" + "\n************************");
+                System.out.println("\n************************\nSeleccione operacion:\n0.-Inicio" + "\n1.- Crear arbol manual"
+                        + "\n2.- Crear aleatoriamente");
+                if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty()) {
+                    System.out.println("3.- Realizar operaciones arbol manual");
+                }
+                if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty()) {
+                    System.out.println("4.- Realizar operaciones arbol aleatorio");
+                }
+                System.out.println("************************");
                 option = in.nextInt();
             } else {
                 option = 0;
@@ -61,9 +69,11 @@ public class Menu {
                 case 1:
                     if (Operations.BinaryTree) {
                         Operations.manualBinaryTree();
+                        Operations.manual = true;
                     }
                     if (Operations.AVL) {
                         Operations.manualAvlTree();
+                        Operations.manual = true;
                     }
                     /*if (Operations.heap) {
 
@@ -73,14 +83,42 @@ public class Menu {
                 case 2:
                     if (Operations.BinaryTree) {
                         Operations.randomBinaryTree();
+                        Operations.manual = false;
                     }
                     if (Operations.AVL) {
                         Operations.randomAvlTree();
+                        Operations.manual = false;
                     }
-                    /*f (Operations.heap) {
+                    /*if (Operations.heap) {
 
                     }*/
                     operationsMenu();
+                    break;
+                case 3:
+                    if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty()) {
+                        if (Operations.BinaryTree) {
+                            Operations.manual = true;
+                        }
+                        if (Operations.AVL) {
+                            Operations.manual = true;
+                        }
+                        operationsMenu();
+                    } else {
+                        System.out.println("OPCION INCORRECTA");
+                    }
+                    break;
+                case 4:
+                    if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty()) {
+                        if (Operations.BinaryTree) {
+                            Operations.manual = false;
+                        }
+                        if (Operations.AVL) {
+                            Operations.manual = false;
+                        }
+                        operationsMenu();
+                    } else {
+                        System.out.println("OPCION INCORRECTA");
+                    }
                     break;
                 default:
                     System.out.println("OPCION INCORRECTA");
@@ -94,49 +132,36 @@ public class Menu {
         int option;
 
         do {
-            System.out.println("************************\nSeleccione operacion:\n0.- Inicio" + "\n-1.- Atras\n" +
+            System.out.println("\n************************\nSeleccione operacion:\n0.- Inicio" + "\n-1.- Atras\n" +
                     "1.- Eliminar elemento\n" + "2.- Encontrar elemento\n" + "3.- Agregar elemento\n" + "4.- Imprimir ordenado\n" +
-                    "5.- Dibujar arbol\n" + "\n************************");
+                    "5.- Dibujar arbol\n" + "************************");
             option = in.nextInt();
 
             switch (option) {
                 case -1:
+                    Operations.manual = false;
                     break;
                 case 0:
                     Operations.exit = true;
                     break;
                 case 1:
-                    if (Operations.BinaryTree) {
-
-                    }
-                    if (Operations.AVL) {
-
-                    }
-                    /*if (Operations.heap) {
-
-                    }*/
+                    Operations.delete();
                     break;
                 case 2:
+                    Operations.find();
                     break;
                 case 3:
                     break;
                 case 4:
-                    if (Operations.BinaryTree) {
-
-                    }
-                    if (Operations.AVL) {
-
-                    }
-                    /*if (Operations.heap) {
-
-                    }*/
+                    Operations.printInOrder();
                     break;
                 case 5:
+                    Operations.printDrawTree();
                     break;
                 default:
                     System.out.println("OPCION INCORRECTA");
                     break;
             }
-        } while (option < 0);
+        } while (option > 0);
     }
 }

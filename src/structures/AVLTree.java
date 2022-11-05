@@ -8,6 +8,9 @@ public class AVLTree<T extends Comparable<T>> {
 
     private AVLNode<T> root;
 
+    public AVLTree() {
+        root = new AVLNode<>();
+    }
     public AVLNode<T> getRoot() {
         return root;
     }
@@ -31,7 +34,6 @@ public class AVLTree<T extends Comparable<T>> {
         updateHeight(node);
         return applyRotation(node);
     }
-
 
     public void delete(T data) {
         root = delete(data, root);
@@ -59,7 +61,6 @@ public class AVLTree<T extends Comparable<T>> {
         updateHeight(node);
         return applyRotation(node);
     }
-
 
     public void printInOrder()  {
         PrintInOrder(root);
@@ -109,7 +110,6 @@ public class AVLTree<T extends Comparable<T>> {
         return node.getData();
     }
 
-
     public T getMin() {
         if (isEmpty()) {
             return null;
@@ -124,9 +124,12 @@ public class AVLTree<T extends Comparable<T>> {
         return node.getData();
     }
 
+    public void makeEmpty() {
+        root = null;
+    }
 
     public boolean isEmpty() {
-        return root == null;
+        return root.getData() == null;
     }
 
     private AVLNode<T> applyRotation(AVLNode<T> node) {

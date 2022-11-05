@@ -36,11 +36,31 @@ public class BinaryTree<AnyType> {
         }
     }
 
-    public void addNotRep(Integer element) throws Exception {
+    public void addNotRep(Integer element) {
         addNotRep(element, root);
     }
 
-    public void addNotRep(Integer element, BinaryNode<AnyType> node) throws Exception {
+    public void addNotRep(Integer element, BinaryNode<AnyType> node) {
+        if (node.getElement() == null) {    //chequeo si el arbol esta vacio
+            node.setElement(element);
+        } else {
+            if (element < node.getElement()) {
+                if (node.getLeft() == null) {
+                    node.setLeft(new BinaryNode<>(element));
+                } else {
+                    addNotRep(element, node.getLeft());
+                }
+            } else if (element > node.getElement()) {
+                if (node.getRight() == null) {
+                    node.setRigth(new BinaryNode<>(element));
+                } else {
+                    addNotRep(element, node.getRight());
+                }
+            }
+        }
+    }
+
+    /*public void addNotRep(Integer element, BinaryNode<AnyType> node) throws Exception {
         if (element < node.getElement()) {
             if (node.getLeft() == null) {
                 node.setLeft(new BinaryNode<>(element));
@@ -56,12 +76,38 @@ public class BinaryTree<AnyType> {
         } else {
             throw new Exception("El elemento ya esta en el arbol");
         }
-    }
+    }*/
 
-    public void delete(Integer element) throws Exception {
+    public void delete(Integer element) {
         delete(element, root);
     }
+    /*public void delete(Integer element) throws Exception {
+        delete(element, root);
+    }*/
 
+    public BinaryNode<AnyType> delete(Integer element, BinaryNode<AnyType> node) {
+        if (element.equals(node.getElement())) {
+            if (node.getLeft() == null && node.getRight() == null) node = null;
+            else if (node.getRight() == null) node = node.getLeft();
+            else if (node.getLeft() == null) node = node.getRight();
+            else {
+                BinaryNode<AnyType> aux = node.getLeft();
+                node = node.getRight();
+                BinaryNode<AnyType> aux2 = node.getLeft();
+                if (aux2 != null) {
+                    while (aux2.getLeft() != null) {
+                        aux2 = aux2.getLeft();
+                    }
+                    aux2.setLeft(aux);
+                } else node.setLeft(aux);
+            }
+        } else if (element < node.getElement() && node.getLeft() != null) node.setLeft(delete(element, node.getLeft()));
+        else if (element > node.getElement() && node.getRight() != null)
+            node.setRigth(delete(element, node.getRight()));
+        else System.out.println("El elemento no esta en el arbol");
+        return node;
+    }
+    /*
     public BinaryNode<AnyType> delete(Integer element, BinaryNode<AnyType> node) throws Exception {
         if (element.equals(node.getElement())) {
             if (node.getLeft() == null && node.getRight() == null) node = null;
@@ -84,6 +130,7 @@ public class BinaryTree<AnyType> {
         else throw new Exception("El elemento no esta en el arbol");
         return node;
     }
+     */
 
     public Integer find(Integer element) {
         return find(root, element);
@@ -100,7 +147,6 @@ public class BinaryTree<AnyType> {
             if (node.getRight() != null) return find(node.getRight(), element);
             else return null;
         }
-
     }
 
     public BinaryNode<AnyType> getRoot() {
@@ -128,6 +174,7 @@ public class BinaryTree<AnyType> {
     public void printInOrder() {
         root.printInOrder();
     }
+
     /*
     public void printInOrder() throws PrintInOrderEx {
         if (root.getElement() == null) throw new PrintInOrderEx("ARBOL VACIO");
@@ -149,11 +196,11 @@ public class BinaryTree<AnyType> {
     }*/
 
     public void makeEmpty() {
-        root = null;
+        root = new BinaryNode<>();
     }
 
     public boolean isEmpty() {
-        return root == null;
+        return root.getElement() == null;
     }
 
     public void merge(Integer rootItem, BinaryTree<AnyType> t1, BinaryTree<AnyType> t2) {

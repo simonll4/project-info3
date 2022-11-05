@@ -21,12 +21,12 @@ public class Operations {
     static boolean BinaryTree = false;
     static boolean AVL = false;
     static boolean heap = false;
-
     static boolean exit = false;
+    static boolean manual = false;
 
     //crea un arbol binario con numeros aleatorios
     public static void randomBinaryTree() {
-
+        randomBinaryTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int quantity;
 
@@ -34,12 +34,13 @@ public class Operations {
         quantity = in.nextInt();
 
         for (int i = 0; i < quantity; i++) {
-            randomBinaryTree.add(generateRandom());
+            randomBinaryTree.addNotRep(generateRandom());
         }
     }
 
     //crea un arbol binario con numeros ingresados por consola
     public static void manualBinaryTree() {
+        manualBinaryTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int value;
         int i = 0;
@@ -50,13 +51,14 @@ public class Operations {
             System.out.println("VALOR " + i + ": ");
             value = in.nextInt();
             if (value > 0) {
-                manualBinaryTree.add(value);
+                manualBinaryTree.addNotRep(value);
             }
         } while (value > 0);
     }
 
     //crea un arbol binario AVL con numeros aleatorios
     public static void randomAvlTree() {
+        randomAvlTree.makeEmpty();
 
         Scanner in = new Scanner(System.in);
         int quantity;
@@ -71,6 +73,7 @@ public class Operations {
 
     //crea un arbol binario AVL con numeros ingresados por consola
     public static void manualAvlTree() {
+        manualAvlTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int value;
         int i = 0;
@@ -87,43 +90,103 @@ public class Operations {
     }
 
     //metodo para ejecutar el printInOrder para cada arbol ya creado
-    public static void printInOrderBinaryTree(int option) {
-        Scanner in = new Scanner(System.in);
-        // Primero ver la vandera para ver el tipo de arbol
-        // Me fijo si es manual o aleatorio
-        if (option == 0) {
-            manualBinaryTree.printInOrder();
-        } else if (option == 1) {
-            randomBinaryTree.printInOrder();
+    public static void printInOrder() {
+        if(BinaryTree){
+            if (manual) {
+                manualBinaryTree.printInOrder();
+            } else {
+                randomBinaryTree.printInOrder();
+            }
         }
+        if(AVL){
+            if (manual) {
+                manualAvlTree.printInOrder();
+            } else {
+                randomAvlTree.printInOrder();
+            }
+        }
+        /*if(heap){
+
+        }*/
+        System.out.println("");
     }
 
     //metodo para dibujar los arboles ya creados en consola
     public static void printDrawTree() {
-        Scanner in = new Scanner(System.in);
-        int option;
-
-        do {
-            System.out.println("\n---PRINTER---\n0)salir\n1)ARBOL BINARIO ALEATORIO\n2)ARBOL BINARIO MANUAL\n3)ARBOL AVL ALEATORIO\n4)ARBOL AVL MANUAL");
-            option = in.nextInt();
-
-            if (option == 1) {
-                randomBinaryTree.printDraw();
-            } else if (option == 2) {
-
+        if(BinaryTree){
+            if (manual) {
                 manualBinaryTree.printDraw();
-            } else if (option == 3) {
-
-                randomAvlTree.printDraw();
-            } else if (option == 4) {
-
-                manualAvlTree.printDraw();
-            } else if (option == 0) {
-                break;
             } else {
-                System.out.println("OPCION INCORRECTA");
+                randomBinaryTree.printDraw();
             }
-        } while (option != 0);
+        }
+        if(AVL){
+            if (manual) {
+                manualAvlTree.printDraw();
+            } else {
+                randomAvlTree.printDraw();
+            }
+        }
+        /*if(heap){
+
+        }*/
+    }
+
+    public static void delete(){
+        Scanner in = new Scanner(System.in);
+        int element;
+        System.out.println("Ingrese el valor que desea borrar: ");
+        element = in.nextInt();
+
+        if(BinaryTree){
+            if (manual) {
+                manualBinaryTree.delete(element);
+            } else {
+                randomBinaryTree.delete(element);
+            }
+        }
+        if(AVL){
+            if (manual) {
+                manualAvlTree.delete(element);
+            } else {
+                randomAvlTree.delete(element);
+            }
+        }
+        /*if(heap){
+
+        }*/
+    }
+
+    public static void find(){
+        Scanner in = new Scanner(System.in);
+        int element;
+        Integer searched = -1;
+        System.out.println("Ingrese el valor que desea encontrar: ");
+        element = in.nextInt();
+
+        if(BinaryTree){
+            if (manual) {
+                searched = manualBinaryTree.find(element);
+            } else {
+                searched = randomBinaryTree.find(element);
+            }
+        }
+        if(AVL){
+            if (manual) {
+                searched = manualAvlTree.find(element);
+            } else {
+                searched = randomAvlTree.find(element);
+            }
+        }
+        /*if(heap){
+
+        }*/
+
+        if(searched != null){
+            System.out.println("---------------------------------\nEL VALOR SE ENCUENTRA EN EL ARBOL\n---------------------------------");
+        } else {
+            System.out.println("------------------------------------\nEL VALOR NO SE ENCUENTRA EN EL ARBOL\n------------------------------------");
+        }
     }
 
     //genera numeros aleatorios en un intervalo definido
