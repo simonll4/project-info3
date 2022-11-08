@@ -1,9 +1,6 @@
 package structures;
 
 
-import exceptions.PrintDrawEx;
-import exceptions.PrintInOrderEx;
-
 public class AVLTree<T extends Comparable<T>> {
 
     private AVLNode<T> root;
@@ -11,6 +8,7 @@ public class AVLTree<T extends Comparable<T>> {
     public AVLTree() {
         root = new AVLNode<>();
     }
+
     public AVLNode<T> getRoot() {
         return root;
     }
@@ -62,14 +60,9 @@ public class AVLTree<T extends Comparable<T>> {
         return applyRotation(node);
     }
 
-    public void printInOrder()  {
+    public void printInOrder() {
         PrintInOrder(root);
     }
-
-    /*public void printInOrder() throws PrintInOrderEx {
-        if (root == null) throw new PrintInOrderEx("ARBOL VACIO");
-        PrintInOrder(root);
-    }*/
 
     private void PrintInOrder(AVLNode<T> node) {
         if (node != null) {
@@ -79,14 +72,9 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
-    public void printDraw(){
+    public void printDraw() {
         printDraw("", root, false);
     }
-
-    /*public void printDraw() throws PrintDrawEx {
-        if (root == null) throw new PrintDrawEx("ARBOL VACIO");
-        printDraw("", root, false);
-    }*/
 
     private void printDraw(String prefix, AVLNode n, boolean isLeft) {
         if (n != null) {

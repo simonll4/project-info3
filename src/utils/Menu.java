@@ -43,12 +43,11 @@ public class Menu {
 
         do {
             if (!Operations.exit) {
-                System.out.println("\n************************\nSeleccione operacion:\n0.-Inicio" + "\n1.- Crear arbol manual"
-                        + "\n2.- Crear aleatoriamente");
-                if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty()) {
+                System.out.println("\n************************\nSeleccione operacion:\n0.-Inicio" + "\n1.- Crear arbol manual" + "\n2.- Crear aleatoriamente");
+                if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty() || Operations.heap && !Operations.manualHeap.isEmpty()) {
                     System.out.println("3.- Realizar operaciones arbol manual");
                 }
-                if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty()) {
+                if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty() || Operations.heap && !Operations.randomHeap.isEmpty()) {
                     System.out.println("4.- Realizar operaciones arbol aleatorio");
                 }
                 System.out.println("************************");
@@ -66,50 +65,36 @@ public class Menu {
                 case 1:
                     if (Operations.BinaryTree) {
                         Operations.createManualBinaryTree();
-                        Operations.manual = true;
                     }
                     if (Operations.AVL) {
                         Operations.createManualAvlTree();
-                        Operations.manual = true;
                     }
-                    /*if (Operations.heap) {
-
-                    }*/
+                    if (Operations.heap) {
+                        Operations.createManualHeap();
+                    }
                     break;
                 case 2:
                     if (Operations.BinaryTree) {
                         Operations.createRandomBinaryTree();
-                        Operations.manual = false;
                     }
                     if (Operations.AVL) {
                         Operations.createRandomAvlTree();
-                        Operations.manual = false;
                     }
-                    /*if (Operations.heap) {
-
-                    }*/
+                    if (Operations.heap) {
+                        Operations.createRandomHeap();
+                    }
                     break;
                 case 3:
-                    if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty()) {
-                        if (Operations.BinaryTree) {
-                            Operations.manual = true;
-                        }
-                        if (Operations.AVL) {
-                            Operations.manual = true;
-                        }
+                    if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty() || Operations.heap && !Operations.manualHeap.isEmpty()) {
+                        Operations.manual = true;
                         operationsMenu();
                     } else {
                         System.out.println("OPCION INCORRECTA");
                     }
                     break;
                 case 4:
-                    if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty()) {
-                        if (Operations.BinaryTree) {
-                            Operations.manual = false;
-                        }
-                        if (Operations.AVL) {
-                            Operations.manual = false;
-                        }
+                    if (Operations.BinaryTree && !Operations.randomBinaryTree.isEmpty() || Operations.AVL && !Operations.randomAvlTree.isEmpty() || Operations.heap && !Operations.randomHeap.isEmpty()) {
+                        Operations.manual = false;
                         operationsMenu();
                     } else {
                         System.out.println("OPCION INCORRECTA");
@@ -127,9 +112,10 @@ public class Menu {
         int option;
 
         do {
-            System.out.println("\n************************\nSeleccione operacion:\n0.- Inicio" + "\n-1.- Atras\n" +
-                    "1.- Eliminar elemento\n" + "2.- Encontrar elemento\n" + "3.- Agregar elemento\n" + "4.- Imprimir ordenado\n" +
-                    "5.- Dibujar arbol\n" + "************************");
+            System.out.println("\n************************\nSeleccione operacion:\n0.- Inicio" + "\n-1.- Atras\n" + "1.- Eliminar elemento\n" + "2.- Encontrar elemento\n" + "3.- Agregar elemento\n" + "4.- Imprimir ordenado");
+            if (!Operations.heap) {
+                System.out.print("5.- Dibujar arbol\n" + "************************\n");
+            }
             option = in.nextInt();
 
             switch (option) {
@@ -152,7 +138,11 @@ public class Menu {
                     Operations.printInOrder();
                     break;
                 case 5:
-                    Operations.printDrawTree();
+                    if (!Operations.heap) {
+                        Operations.printDrawTree();
+                    } else {
+                        System.out.println("OPCION INCORRECTA");
+                    }
                     break;
                 default:
                     System.out.println("OPCION INCORRECTA");
