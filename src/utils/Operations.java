@@ -1,7 +1,5 @@
 package utils;
 
-import exceptions.PrintDrawEx;
-import exceptions.PrintInOrderEx;
 import structures.*;
 
 import java.util.Scanner;
@@ -25,7 +23,7 @@ public class Operations {
     static boolean manual = false;
 
     //crea un arbol binario con numeros aleatorios
-    public static void randomBinaryTree() {
+    public static void createRandomBinaryTree() {
         randomBinaryTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int quantity;
@@ -39,7 +37,7 @@ public class Operations {
     }
 
     //crea un arbol binario con numeros ingresados por consola
-    public static void manualBinaryTree() {
+    public static void createManualBinaryTree() {
         manualBinaryTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int value;
@@ -57,7 +55,7 @@ public class Operations {
     }
 
     //crea un arbol binario AVL con numeros aleatorios
-    public static void randomAvlTree() {
+    public static void createRandomAvlTree() {
         randomAvlTree.makeEmpty();
 
         Scanner in = new Scanner(System.in);
@@ -72,7 +70,7 @@ public class Operations {
     }
 
     //crea un arbol binario AVL con numeros ingresados por consola
-    public static void manualAvlTree() {
+    public static void createManualAvlTree() {
         manualAvlTree.makeEmpty();
         Scanner in = new Scanner(System.in);
         int value;
@@ -87,6 +85,29 @@ public class Operations {
                 manualAvlTree.insert(value);
             }
         } while (value > 0);
+    }
+
+    public static void addElement(){
+        Scanner in = new Scanner(System.in);
+        Integer element;
+
+        System.out.println("Ingrese valor entero que desea agregar al arbol: ");
+        element = in.nextInt();
+
+        if(BinaryTree){
+            if (manual) {
+                manualBinaryTree.addNotRep(element);
+            } else {
+                randomBinaryTree.addNotRep(element);
+            }
+        }
+        if(AVL){
+            if (manual) {
+                manualAvlTree.insert(element);
+            } else {
+                randomAvlTree.insert(element);
+            }
+        }
     }
 
     //metodo para ejecutar el printInOrder para cada arbol ya creado

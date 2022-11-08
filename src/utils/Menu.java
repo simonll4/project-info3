@@ -1,8 +1,5 @@
 package utils;
 
-import exceptions.PrintDrawEx;
-import exceptions.PrintInOrderEx;
-
 import java.util.Scanner;
 
 //menu con las opciones que cuenta el programa
@@ -68,31 +65,29 @@ public class Menu {
                     break;
                 case 1:
                     if (Operations.BinaryTree) {
-                        Operations.manualBinaryTree();
+                        Operations.createManualBinaryTree();
                         Operations.manual = true;
                     }
                     if (Operations.AVL) {
-                        Operations.manualAvlTree();
+                        Operations.createManualAvlTree();
                         Operations.manual = true;
                     }
                     /*if (Operations.heap) {
 
                     }*/
-                    operationsMenu();
                     break;
                 case 2:
                     if (Operations.BinaryTree) {
-                        Operations.randomBinaryTree();
+                        Operations.createRandomBinaryTree();
                         Operations.manual = false;
                     }
                     if (Operations.AVL) {
-                        Operations.randomAvlTree();
+                        Operations.createRandomAvlTree();
                         Operations.manual = false;
                     }
                     /*if (Operations.heap) {
 
                     }*/
-                    operationsMenu();
                     break;
                 case 3:
                     if (Operations.BinaryTree && !Operations.manualBinaryTree.isEmpty() || Operations.AVL && !Operations.manualAvlTree.isEmpty()) {
@@ -151,6 +146,7 @@ public class Menu {
                     Operations.find();
                     break;
                 case 3:
+                    Operations.addElement();
                     break;
                 case 4:
                     Operations.printInOrder();

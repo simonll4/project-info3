@@ -21,7 +21,7 @@ public class BinaryTree<AnyType> {
         add(root, element);
     }
 
-    public void add(BinaryNode<AnyType> node, Integer element) {
+    protected void add(BinaryNode<AnyType> node, Integer element) {
 
         if (node.getElement() == null) {    //chequeo si el arbol esta vacio
             node.setElement(element);
@@ -40,7 +40,7 @@ public class BinaryTree<AnyType> {
         addNotRep(element, root);
     }
 
-    public void addNotRep(Integer element, BinaryNode<AnyType> node) {
+    protected void addNotRep(Integer element, BinaryNode<AnyType> node) {
         if (node.getElement() == null) {    //chequeo si el arbol esta vacio
             node.setElement(element);
         } else {
@@ -85,7 +85,7 @@ public class BinaryTree<AnyType> {
         delete(element, root);
     }*/
 
-    public BinaryNode<AnyType> delete(Integer element, BinaryNode<AnyType> node) {
+    protected BinaryNode<AnyType> delete(Integer element, BinaryNode<AnyType> node) {
         if (element.equals(node.getElement())) {
             if (node.getLeft() == null && node.getRight() == null) node = null;
             else if (node.getRight() == null) node = node.getLeft();
@@ -136,7 +136,7 @@ public class BinaryTree<AnyType> {
         return find(root, element);
     }
 
-    public Integer find(BinaryNode node, Integer element) {
+    protected Integer find(BinaryNode node, Integer element) {
 
         if (element.equals(node.getElement())) {
             return node.getElement();
